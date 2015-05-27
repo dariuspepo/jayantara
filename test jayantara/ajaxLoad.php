@@ -1,7 +1,7 @@
 <?php
 $data = file_get_contents("katadasar.txt"); //read the file
 $convert = explode("\n", $data); //create array separate by new line
-
+$convert = array_map('strtolower', $convert);
 
 function factorise ($word) {
         // Take a number, split it into individual letters, and multiply those values together
