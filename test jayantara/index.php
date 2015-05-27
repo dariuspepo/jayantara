@@ -65,7 +65,7 @@ function factorise ($word) {
         $total = 1;
 
         $letters = str_split($word);
-
+        
         foreach ($letters as $thisLetter) {
                 if (isset($factors[$thisLetter])) {
                         
@@ -109,8 +109,12 @@ foreach ($dict as $thisWord) {
                     $y++;
                 }
                 $z=$y;
-                $a[$z] .= $thisWord . ", ";
-                
+                if($a[$z]==""){
+                    $a[$z] .= $thisWord;
+                }
+                else{
+                    $a[$z] .= ", " . $thisWord;
+                }
             $p++;
         }
 }
@@ -122,9 +126,20 @@ for ($i=3;$i<14;$i++)
         $jumlah = $a[$i];
         $schools_array = explode(",", $jumlah);
         $result = count($schools_array);
-        $result = $result - 1;
         echo '<span style="color:black;font-weight:bold">' . "&emsp;&emsp;&emsp;• ". $i . " Huruf: <br><br>" . '<span>';
-        echo "<h4>" . '<span style="color:blue;font-weight:bold">' . $a[$i] .'</span>' .  "&emsp; --&emsp;(". $result . " Kata)<br></h4>";
+        $final = explode(", ", $a[$i]); //create array separate by new line
+        echo "<h4>" . '<span style="color:blue;font-weight:bold">';
+        $vS = 0;
+        foreach ($final as $cetakFinal) {
+                    if($vS==0){
+                       echo '<span style="text-decoration:underline">' . $cetakFinal .'</span>';
+                        $vS++;
+                    }else{
+                        echo ", ". '<span style="text-decoration:underline">' . $cetakFinal .'</span>';
+                    }
+        
+                }
+        echo '</span>' .  "&emsp; --&emsp;(". $result . " Kata)<br></h4>";    
         $resultAkhir = $resultAkhir + $result;
     }
    
