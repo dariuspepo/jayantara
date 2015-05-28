@@ -38,11 +38,18 @@ $hitungJumlah = str_split($searchWord);
     echo "<i><b>Hasil dengan Async Javascript. Untuk hasil dengan form, tekan tombol olah</b></i>";
     echo "<br><br>&emsp;Daftar Huruf&emsp; :&emsp;" ;
 $x = 0;
+if($searchWord==""){ 
+    $x = 0;
+
+}
+else{
+
 foreach ($hitungJumlah as $thishitungJumlah) {
             echo '<span style="color:blue;font-weight: bold;#text-align:center;background-color:#ffff42">'.strtoupper($thishitungJumlah) . "  " . '</span>';
             
             $x++;
         }
+}
 echo "&emsp; -- &emsp;(" . $x . " Huruf)<br><br>&emsp;Daftar Kata Yang Bisa Disusun &emsp;:<br><br>";
 $dict = $convert;
 
@@ -83,10 +90,10 @@ for ($i=3;$i<14;$i++)
         $vS = 0;
         foreach ($final as $cetakFinal) {
                     if($vS==0){
-                       echo '<span style="text-decoration:underline">' . $cetakFinal .'</span>';
+                        echo '<span style="text-decoration:underline">' .'<a target="_blank" href="http://kbbi.web.id/' . $cetakFinal . '">'.$cetakFinal . "</a>" . '</span>';
                         $vS++;
                     }else{
-                        echo ", ". '<span style="text-decoration:underline">' . $cetakFinal .'</span>';
+                        echo ", " .  '<span style="text-decoration:underline">' .'<a target="_blank" href="http://kbbi.web.id/' . $cetakFinal . '">'.$cetakFinal . "</a>" . '</span>';
                     }
         
                 }
