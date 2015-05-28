@@ -29,7 +29,7 @@
     <form method="post" action="index.php">
     <br /><br />
    &emsp; Ketikkan: &emsp;<input onkeyup="javascript:invoAjaxLoadBarangSearch(
-                                                           '#wordInput', '#searchPlace', '0')" type="text" pattern=".{3,13}" required title="3 sampai 13 huruf" name="wordSearch" characters" id="wordInput" minlenght="3" maxlength"13"> &emsp;<input type="submit"  value="Olah" />
+                                                           '#wordInput', '#searchPlace', '0')" type="text" pattern=".{3,13}" required title="3 sampai 13 huruf" name="wordSearch" characters" id="wordInput" minlenght="3" maxlength="13"> &emsp;<input type="submit"  value="Olah" />
     
 </form>
    
@@ -82,7 +82,9 @@ $hitungJumlah = str_split($searchWord);
 ?><div id="searchPlace">
 <?php
 //$searchWord = "ababababab";
-if($searchWord==""){}
+if($searchWord==""){
+    
+}
 else{
 //echo '<div id="searchPlace">';
 echo "<br><br>&emsp;Daftar Huruf&emsp; :&emsp;" ;
@@ -132,10 +134,10 @@ for ($i=3;$i<14;$i++)
         $vS = 0;
         foreach ($final as $cetakFinal) {
                     if($vS==0){
-                       echo '<span style="text-decoration:underline">' . $cetakFinal .'</span>';
+                        echo '<span style="text-decoration:underline">' .'<a target="_blank" href="http://kbbi.web.id/' . $cetakFinal . '">'.$cetakFinal . "</a>" . '</span>';
                         $vS++;
                     }else{
-                        echo ", ". '<span style="text-decoration:underline">' . $cetakFinal .'</span>';
+                        echo ", " .  '<span style="text-decoration:underline">' .'<a target="_blank" href="http://kbbi.web.id/' . $cetakFinal . '">'.$cetakFinal . "</a>" . '</span>';
                     }
         
                 }
@@ -149,7 +151,54 @@ for ($i=3;$i<14;$i++)
 ?>   
 </div>
      </footer>
-  
+  <nav>
+    <ul>
+          </ul>
+  </nav>
+  <h3>&emsp;Lihat daftar kata di <a target="_blank" href="katadasar.txt">
+sini</a>  
+<?php
+    $filename = 'katadasar.txt';
+    $fileBesar = filesize($filename);
+    function FileSizeConvert($bytes)
+    {
+    $bytes = floatval($bytes);
+        $arBytes = array(
+            0 => array(
+                "UNIT" => "TB",
+                "VALUE" => pow(1024, 4)
+            ),
+            1 => array(
+                "UNIT" => "GB",
+                "VALUE" => pow(1024, 3)
+            ),
+            2 => array(
+                "UNIT" => "MB",
+                "VALUE" => pow(1024, 2)
+            ),
+            3 => array(
+                "UNIT" => "KB",
+                "VALUE" => 1024
+            ),
+            4 => array(
+                "UNIT" => "B",
+                "VALUE" => 1
+            ),
+        );
+
+    foreach($arBytes as $arItem)
+    {
+        if($bytes >= $arItem["VALUE"])
+        {
+            $result = $bytes / $arItem["VALUE"];
+            $result = str_replace(".", "," , strval(round($result, 2)))." ".$arItem["UNIT"];
+            break;
+        }
+    }
+    return $result;
+    }
+?>
+(<?php echo FileSizeConvert($fileBesar);?>)</h3>
 
 </body>
 </html>
